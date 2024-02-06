@@ -8,8 +8,9 @@ export class User {
   /**
    * MANDATORY PROPS
    */
+
   @Prop()
-  nickname: string;
+  loginID: string;
 
   @Exclude()
   @Prop()

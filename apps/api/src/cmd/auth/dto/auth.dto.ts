@@ -14,6 +14,10 @@ export class AuthDto {
   nickname: string;
 
   @IsString()
+  @IsNotEmpty()
+  loginID: string;
+
+  @IsString()
   @MinLength(8, { message: 'Minimum length is 8 with special characters' })
   @MaxLength(20, { message: 'Maximum length is 20' })
   @Matches(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!$%@#£€*?&]{8,}$/, {
@@ -27,7 +31,7 @@ export class SignUpDto {
   @IsString()
   @IsNotEmpty()
   @MaxLength(255)
-  nickname: string;
+  loginID: string;
 
   @IsString()
   @IsNotEmpty()
@@ -77,7 +81,7 @@ export class UserIdDto {
 export class UpdateUserDto {
   @IsString()
   @IsNotEmpty()
-  nickname: string;
+  loginID: string;
 
   @IsOptional()
   oldPassword?: string;
@@ -92,13 +96,13 @@ export class UpdateUserDto {
 export class ForgotPasswordDto_checkEmail {
   @IsString()
   @IsNotEmpty()
-  nickname: string;
+  loginID: string;
 }
 
 export class CheckSecurityAnswersDto {
   @IsString()
   @IsNotEmpty()
-  nickname: string;
+  loginID: string;
 
   @IsString()
   @IsNotEmpty()
@@ -112,7 +116,7 @@ export class CheckSecurityAnswersDto {
 export class ResetPasswordDto {
   @IsString()
   @IsNotEmpty()
-  nickname: string;
+  loginID: string;
 
   @IsString()
   @IsNotEmpty()

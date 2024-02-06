@@ -52,7 +52,7 @@ export class AuthService {
 
       const updatedUser = await this.userModel.findByIdAndUpdate(
         id,
-        { password: hashedPwd, nickname: dto.nickname },
+        { password: hashedPwd, loginID: dto.loginID },
         { new: true },
       );
 
@@ -60,7 +60,7 @@ export class AuthService {
     } else {
       const updatedUser = await this.userModel.findByIdAndUpdate(
         id,
-        { nickname: dto.nickname },
+        { loginID: dto.loginID },
         { new: true },
       );
       return updatedUser;
@@ -74,7 +74,7 @@ export class AuthService {
     //generate the password hash
     const hashedPwd = await argon.hash(dto.password);
     const findIfMongoEmailIsTaken = await this.userModel.findOne({
-      nickname: dto.nickname,
+      loginID: dto.loginID,
     });
 
     if (findIfMongoEmailIsTaken)
@@ -84,7 +84,7 @@ export class AuthService {
 
     const user = await this.userModel.create({
       password: hashedPwd,
-      nickname: dto.nickname,
+      loginID: dto.loginID,
       securityAnswer1: dto.securityAnswer1,
       securityAnswer2: dto.securityAnswer2,
       securityQuestion1: dto.securityQuestion1,
@@ -97,7 +97,7 @@ export class AuthService {
   async signin(dto: AuthDto): Promise<any> {
     //find user by email
     const user = await this.userModel.findOne({
-      nickname: dto.nickname,
+      loginID: dto.loginID,
     });
 
     if (!user) throw new ForbiddenException('Tento uživatel neexistuje');
@@ -108,7 +108,7 @@ export class AuthService {
       dto.password,
     );
     if (!passwordMatch) throw new BadRequestException('Špatné heslo');
-    const tokens = await this.signToken(user._id, user.nickname);
+    const tokens = await this.signToken(user._id, user.loginID);
     await this.userModel.findOneAndUpdate(
       { _id: user.id },
       { lastLoggedIn: new Date() },
@@ -138,11 +138,11 @@ export class AuthService {
     return user;
   }
 
-  async signToken(userId: number, nickname: string): Promise<Tokens> {
+  async signToken(userId: number, loginID: string): Promise<Tokens> {
     const config = new ConfigService();
     const payload = {
       sub: userId,
-      nickname,
+      loginID,
     };
     //Access token
     const token = await this.jwt.signAsync(payload, {
@@ -184,11 +184,11 @@ export class AuthService {
   }
 
   async startPasswordReset(dto: ForgotPasswordDto_checkEmail): Promise<{
-    nickname: string;
+    loginID: string;
     securityQuestion1: string;
     securityQuestion2: string;
   }> {
-    const user = await this.userModel.findOne({ nickname: dto.nickname });
+    const user = await this.userModel.findOne({ loginID: dto.loginID });
     if (!user) throw new BadRequestException('Uživatel neexistuje');
 
     if (!user.securityQuestion1 || !user.securityQuestion2)
@@ -197,7 +197,7 @@ export class AuthService {
       );
 
     return {
-      nickname: user.nickname,
+      loginID: user.loginID,
       securityQuestion1: user.securityQuestion1,
       securityQuestion2: user.securityQuestion2,
     };
@@ -207,7 +207,7 @@ export class AuthService {
     //Get user but remove password property
 
     const user = await this.userModel
-      .findOne({ nickname: dto.nickname })
+      .findOne({ loginID: dto.loginID })
       .select('-password');
 
     if (!user) throw new BadRequestException('Uživatel neexistuje');

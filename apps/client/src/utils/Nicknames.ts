@@ -1,140 +1,104 @@
 const listOfAnimals = [
-  "pes",
-  "kočka",
-  "králík",
-  "kůň",
-  "kráva",
-  "prase",
-  "ovce",
-  "kohout",
-  "kachna",
-  "husa",
-  "krůta",
-  "lev",
-  "tygr",
-  "medvěd",
-  "žirafa",
-  "slon",
-  "krokodýl",
-  "aligátor",
-  "opice",
-  "gorila",
-  "orangutan",
-  "pavouk",
-  "mravenec",
-  "brouk",
-  "motýl",
-  "vepř",
-  "ježek",
-  "rys",
-  "vlk",
-  "liška",
-  "jelen",
-  "srna",
-  "zajíc",
-  "bobr",
-  "nutrie",
-  "mys",
-  "krysa",
-  "hraboš",
-  "víceřitý",
-  "sysel",
-  "jezevec",
-  "lasice",
-  "nork",
-  "tchoř",
-  "skunk",
-  "mýval",
-  "koala",
-  "klokan",
-  "vačice",
-  "opossum",
-  "dingo",
-  "vombat",
-  "tasman",
-  "kiwi",
-  "emu",
-  "kazuár",
-  "labuť",
-  "flamingo",
-  "pelikán",
-  "tučňák",
-  "albatros",
-  "kondor",
-  "sup",
-  "jestřáb",
-  "sokol",
-  "orl",
-  "sova",
-  "kakadu",
-  "papoušek",
-  "kolibřík",
-  "straka",
-  "vrána",
-  "sojka",
-  "kos",
-  "sýkora",
-  "vlaštovka",
-  "racci",
-  "čáp",
-  "volavka",
-  "kormorán",
-  "tučňák",
-  "pingvin",
-  "albatros",
-  "kondor",
-  "sup",
-  "jestřáb",
-  "sokol",
-  "orel",
-  "sova",
-  "kakadu",
-  "papoušek",
-  "kolibřík",
-  "straka",
-  "vrána",
-  "sojka",
-  "kos",
-  "sýkora",
-  "vlaštovka",
-  "racci",
-  "čáp",
-  "volavka",
-  "kormorán",
-  "losos",
-  "pstruh",
-  "kapr",
-  "sumec",
-  "úhoř",
-  "sleď",
-  "makrela",
-  "tuňák",
-  "mečoun",
-  "marlin",
-  "barrakuda",
-  "žralok",
-  "delfín",
-  "velryba",
-  "morž",
-  "tuleň",
-  "lachtan",
-  "mrož",
-  "krab",
-  "homár",
-  "kreveta",
-  "chobotnice",
-  "sépie",
-  "krakatice",
-  "medúza",
-  "korál",
-  "anémona",
-  "hroznyň",
-  "hvězdice",
-  "mořský ježek",
-  "mořská okurka",
-  "plankton",
-  "zooplankton",
-  "fitoplankton",
+  { animal: "pes", type: "m" },
+  { animal: "kočka", type: "ž" },
+  { animal: "králík", type: "s" },
+  { animal: "panda", type: "m" },
+  { animal: "lev", type: "m" },
+  { animal: "tygr", type: "m" },
+  { animal: "slon", type: "m" },
+  { animal: "žirafa", type: "ž" },
+  { animal: "klokan", type: "s" },
+  { animal: "tukan", type: "m" },
+  { animal: "orangutan", type: "m" },
+  { animal: "delfín", type: "s" },
+  { animal: "velryba", type: "s" },
+  { animal: "plameňák", type: "m" },
+  { animal: "pingvin", type: "s" },
+  { animal: "krokodýl", type: "m" },
+  { animal: "ježek", type: "m" },
+  { animal: "víla", type: "ž" },
+  { animal: "had", type: "m" },
+  { animal: "leguán", type: "m" },
+  { animal: "pštros", type: "m" },
+  { animal: "klokan", type: "s" },
+  { animal: "medvěd", type: "m" },
+  { animal: "pavouk", type: "m" },
+  { animal: "rys", type: "m" },
+  { animal: "hroch", type: "m" },
+  { animal: "nosorožec", type: "m" },
+  { animal: "želva", type: "ž" },
+  { animal: "koza", type: "ž" },
+  { animal: "ovce", type: "ž" },
+  { animal: "pštros", type: "m" },
+  { animal: "alpaka", type: "s" },
+  { animal: "lama", type: "ž" },
+  { animal: "slepice", type: "ž" },
+  { animal: "kohout", type: "m" },
+  { animal: "lenochod", type: "m" },
+  { animal: "ropucha", type: "ž" },
+  { animal: "netopýr", type: "m" },
+  { animal: "rak", type: "m" },
+  { animal: "mravenec", type: "m" },
+  { animal: "pavouk", type: "m" },
+  { animal: "žába", type: "ž" },
+  { animal: "andulka", type: "ž" },
+  { animal: "holub", type: "m" },
+  { animal: "jezevec", type: "m" },
+  { animal: "lenochod", type: "m" },
+  { animal: "včela", type: "ž" },
+  { animal: "motýl", type: "m" },
+  { animal: "ještěrka", type: "ž" },
+  { animal: "los", type: "m" },
+  { animal: "lachtan", type: "m" },
+  { animal: "surikata", type: "ž" },
+  { animal: "orangutan", type: "m" },
+  { animal: "sob", type: "m" },
+  { animal: "klokan", type: "s" },
+  { animal: "krab", type: "m" },
+  { animal: "krtek", type: "m" },
+  { animal: "krokodýl", type: "m" },
+  { animal: "slepice", type: "ž" },
+  { animal: "holub", type: "m" },
+  { animal: "lemur", type: "m" },
+  { animal: "mlok", type: "m" },
+  { animal: "šneček", type: "m" },
+  { animal: "želva", type: "ž" },
+  { animal: "kráva", type: "ž" },
+  { animal: "tučňák", type: "m" },
+  { animal: "lama", type: "ž" },
+  { animal: "sova", type: "ž" },
+  { animal: "krab", type: "m" },
+  { animal: "včela", type: "ž" },
+  { animal: "los", type: "m" },
+  { animal: "lenochod", type: "m" },
+  { animal: "netopýr", type: "m" },
+  { animal: "kůň", type: "m" },
+  { animal: "koza", type: "ž" },
+  { animal: "žirafa", type: "ž" },
+  { animal: "tuleň", type: "m" },
+  { animal: "aligátor", type: "m" },
+  { animal: "mrož", type: "m" },
+  { animal: "pštros", type: "m" },
+  { animal: "pavouk", type: "m" },
+  { animal: "lenochod", type: "m" },
+  { animal: "rak", type: "m" },
+  { animal: "ježek", type: "m" },
+  { animal: "žába", type: "ž" },
+  { animal: "mravenec", type: "m" },
+  { animal: "pavouk", type: "m" },
+  { animal: "netopýr", type: "m" },
+  { animal: "ještěrka", type: "ž" },
+  { animal: "medvěd", type: "m" },
+  { animal: "sob", type: "m" },
+  { animal: "krab", type: "m" },
+  { animal: "krtek", type: "m" },
+  { animal: "klokan", type: "s" },
+  { animal: "slepice", type: "ž" },
+  { animal: "hroch", type: "m" },
+  { animal: "velryba", type: "s" },
+  { animal: "aligátor", type: "m" },
+  { animal: "želva", type: "ž" },
+  { animal: "kráva", type: "ž" },
 ];
 
 const listOfAdjectives = [
@@ -414,108 +378,27 @@ const listOfAdjectives = [
   "přitažlivá",
 ];
 
-export const generateRandomNickname: Function = (): {
-  adj: string;
-  animal: string;
-} => {
+export const generateRandomNickname = (): string => {
   const randomAdj =
     listOfAdjectives[Math.floor(Math.random() * listOfAdjectives.length)];
   const randomAnimal =
     listOfAnimals[Math.floor(Math.random() * listOfAnimals.length)];
 
-  //A regular expression that makes sure that ajective is in the correct form (feminine, masculine, neuter) for the Czech language - bad example = "veselá králík", good example = "veselý králík" etc.
-
-  if (
-    randomAdj.endsWith("á") &&
-    (randomAnimal.endsWith("k") ||
-      randomAnimal.endsWith("l") ||
-      randomAnimal.split("").reverse().join("").startsWith("k") ||
-      randomAnimal.split("").reverse().join("").startsWith("l"))
-  ) {
-    return { adj: randomAdj, animal: randomAnimal };
-  } else if (
-    randomAdj.endsWith("á") &&
-    (randomAnimal.endsWith("a") ||
-      randomAnimal.endsWith("e") ||
-      randomAnimal.endsWith("í") ||
-      randomAnimal.endsWith("o") ||
-      randomAnimal.endsWith("u") ||
-      randomAnimal.endsWith("y") ||
-      randomAnimal.endsWith("ý") ||
-      randomAnimal.endsWith("ě") ||
-      randomAnimal.endsWith("ů") ||
-      randomAnimal.endsWith("i") ||
-      randomAnimal.endsWith("é") ||
-      randomAnimal.endsWith("á") ||
-      randomAnimal.endsWith("ý") ||
-      randomAnimal.endsWith("é"))
-  ) {
-    return { adj: randomAdj, animal: randomAnimal };
-  } else if (
-    randomAdj.endsWith("á") &&
-    (randomAnimal.endsWith("n") ||
-      randomAnimal.endsWith("r") ||
-      randomAnimal.split("").reverse().join("").startsWith("n") ||
-      randomAnimal.split("").reverse().join("").startsWith("r"))
-  ) {
-    return { adj: randomAdj, animal: randomAnimal };
-  } else if (
-    randomAdj.endsWith("á") &&
-    (randomAnimal.endsWith("d") ||
-      randomAnimal.endsWith("t") ||
-      randomAnimal.split("").reverse().join("").startsWith("d") ||
-      randomAnimal.split("").reverse().join("").startsWith("t"))
-  ) {
-    return { adj: randomAdj, animal: randomAnimal };
-  } else if (
-    randomAdj.endsWith("á") &&
-    (randomAnimal.endsWith("b") ||
-      randomAnimal.endsWith("p") ||
-      randomAnimal.split("").reverse().join("").startsWith("b") ||
-      randomAnimal.split("").reverse().join("").startsWith("p"))
-  ) {
-    return { adj: randomAdj, animal: randomAnimal };
-  } else if (
-    randomAdj.endsWith("á") &&
-    (randomAnimal.endsWith("v") ||
-      randomAnimal.endsWith("z") ||
-      randomAnimal.split("").reverse().join("").startsWith("v") ||
-      randomAnimal.split("").reverse().join("").startsWith("z"))
-  ) {
-    return { adj: randomAdj, animal: randomAnimal };
-  } else if (
-    randomAdj.endsWith("á") &&
-    (randomAnimal.endsWith("m") ||
-      randomAnimal.endsWith("s") ||
-      randomAnimal.split("").reverse().join("").startsWith("m") ||
-      randomAnimal.split("").reverse().join("").startsWith("s"))
-  ) {
-    return { adj: randomAdj, animal: randomAnimal };
-  } else if (
-    randomAdj.endsWith("á") &&
-    (randomAnimal.endsWith("g") ||
-      randomAnimal.endsWith("h") ||
-      randomAnimal.split("").reverse().join("").startsWith("g") ||
-      randomAnimal.split("").reverse().join("").startsWith("h"))
-  ) {
-    return { adj: randomAdj, animal: randomAnimal };
-  } else if (
-    randomAdj.endsWith("á") &&
-    (randomAnimal.endsWith("j") ||
-      randomAnimal.endsWith("k") ||
-      randomAnimal.split("").reverse().join("").startsWith("j") ||
-      randomAnimal.split("").reverse().join("").startsWith("k"))
-  ) {
-    return { adj: randomAdj, animal: randomAnimal };
-  } else if (
-    randomAdj.endsWith("á") &&
-    (randomAnimal.endsWith("l") ||
-      randomAnimal.endsWith("r") ||
-      randomAnimal.split("").reverse().join("").startsWith("l") ||
-      randomAnimal.split("").reverse().join("").startsWith("r"))
-  ) {
-    return { adj: randomAdj, animal: randomAnimal };
-  } else {
-    return { adj: randomAdj, animal: randomAnimal };
+  if (randomAnimal.type === "m") {
+    //replace the last character with "ý" in randomAdj
+    const adj = randomAdj.slice(0, -1);
+    return `${adj}ý ${randomAnimal.animal}`;
   }
+  if (randomAnimal.type === "ž") {
+    //replace the last character with "á" in randomAdj
+    const adj = randomAdj.slice(0, -1);
+    return `${adj}á ${randomAnimal.animal}`;
+  }
+  if (randomAnimal.type === "s") {
+    //replace the last character with "é" in randomAdj
+    const adj = randomAdj.slice(0, -1);
+    return `${adj}é ${randomAnimal.animal}`;
+  }
+
+  return `${randomAdj} ${randomAnimal.animal}`;
 };

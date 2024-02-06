@@ -1,6 +1,5 @@
 export interface IRegisterFormData {
-  name: string;
-  email: string;
+  loginID: string;
   password: string;
   confirmedPassword: string;
   securityQuestion1: string;
