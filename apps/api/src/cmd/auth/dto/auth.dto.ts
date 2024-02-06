@@ -1,5 +1,4 @@
 import {
-  IsEmail,
   IsNotEmpty,
   IsString,
   MaxLength,
@@ -9,10 +8,10 @@ import {
 } from 'class-validator';
 
 export class AuthDto {
-  @IsEmail()
+  @IsString()
   @IsNotEmpty()
   @MaxLength(255)
-  email: string;
+  nickname: string;
 
   @IsString()
   @MinLength(8, { message: 'Minimum length is 8 with special characters' })
@@ -25,17 +24,11 @@ export class AuthDto {
 }
 
 export class SignUpDto {
-  /**
-   * EMAIL
-   */
-  @IsEmail()
+  @IsString()
   @IsNotEmpty()
   @MaxLength(255)
-  email: string;
+  nickname: string;
 
-  /**
-   * PASSWORD
-   */
   @IsString()
   @IsNotEmpty()
   @MinLength(8, { message: 'Minimum length is 8 with special characters' })
@@ -57,10 +50,6 @@ export class SignUpDto {
     message: 'Heslo je bohužel hodně slabé...',
   })
   confirmedPassword: string;
-
-  @IsString({ message: 'Name must be a text!' })
-  @IsNotEmpty({ message: 'Name is mandatory!' })
-  name: string;
 
   @IsString({ message: 'Security question must be a text!' })
   @IsNotEmpty({ message: 'Security question is mandatory!' })
@@ -88,11 +77,7 @@ export class UserIdDto {
 export class UpdateUserDto {
   @IsString()
   @IsNotEmpty()
-  name: string;
-
-  @IsString()
-  @IsNotEmpty()
-  email: string;
+  nickname: string;
 
   @IsOptional()
   oldPassword?: string;
@@ -105,15 +90,15 @@ export class UpdateUserDto {
 }
 
 export class ForgotPasswordDto_checkEmail {
-  @IsEmail()
+  @IsString()
   @IsNotEmpty()
-  email: string;
+  nickname: string;
 }
 
 export class CheckSecurityAnswersDto {
-  @IsEmail()
+  @IsString()
   @IsNotEmpty()
-  email: string;
+  nickname: string;
 
   @IsString()
   @IsNotEmpty()
@@ -125,9 +110,9 @@ export class CheckSecurityAnswersDto {
 }
 
 export class ResetPasswordDto {
-  @IsEmail()
+  @IsString()
   @IsNotEmpty()
-  email: string;
+  nickname: string;
 
   @IsString()
   @IsNotEmpty()

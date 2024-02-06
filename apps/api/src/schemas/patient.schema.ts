@@ -11,16 +11,10 @@ export class Patient {
    * MANDATORY PROPS
    */
   @Prop()
-  name: string;
-
-  @Prop()
-  surname: string;
+  nickname: string;
 
   @Prop()
   privateId: string;
-
-  @Prop()
-  email: string;
 
   @Prop()
   fulltext: string;

@@ -48,7 +48,7 @@ export class AuthController {
   @Post('/password-reset')
   @HttpCode(HttpStatus.OK)
   async startPasswordReset(@Body() dto: ForgotPasswordDto_checkEmail): Promise<{
-    email: string;
+    nickname: string;
     securityQuestion1: string;
     securityQuestion2: string;
   }> {

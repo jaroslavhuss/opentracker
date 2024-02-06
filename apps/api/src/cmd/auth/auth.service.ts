@@ -52,7 +52,7 @@ export class AuthService {
 
       const updatedUser = await this.userModel.findByIdAndUpdate(
         id,
-        { password: hashedPwd, name: dto.name, email: dto.email },
+        { password: hashedPwd, nickname: dto.nickname },
         { new: true },
       );
 
@@ -60,7 +60,7 @@ export class AuthService {
     } else {
       const updatedUser = await this.userModel.findByIdAndUpdate(
         id,
-        { name: dto.name, email: dto.email },
+        { nickname: dto.nickname },
         { new: true },
       );
       return updatedUser;
@@ -74,18 +74,17 @@ export class AuthService {
     //generate the password hash
     const hashedPwd = await argon.hash(dto.password);
     const findIfMongoEmailIsTaken = await this.userModel.findOne({
-      email: dto.email,
+      nickname: dto.nickname,
     });
 
     if (findIfMongoEmailIsTaken)
       throw new BadRequestException(
-        'Uživatel je už s tímto emailem zaregistrovaný',
+        'Uživatel je už s touto přezdívkou zaregistrovaný',
       );
 
     const user = await this.userModel.create({
       password: hashedPwd,
-      email: dto.email,
-      name: dto.name,
+      nickname: dto.nickname,
       securityAnswer1: dto.securityAnswer1,
       securityAnswer2: dto.securityAnswer2,
       securityQuestion1: dto.securityQuestion1,
@@ -98,7 +97,7 @@ export class AuthService {
   async signin(dto: AuthDto): Promise<any> {
     //find user by email
     const user = await this.userModel.findOne({
-      email: dto.email,
+      nickname: dto.nickname,
     });
 
     if (!user) throw new ForbiddenException('Tento uživatel neexistuje');
@@ -109,17 +108,13 @@ export class AuthService {
       dto.password,
     );
     if (!passwordMatch) throw new BadRequestException('Špatné heslo');
-    const tokens = await this.signToken(user._id, user.email, user.authLevel);
+    const tokens = await this.signToken(user._id, user.nickname);
     await this.userModel.findOneAndUpdate(
       { _id: user.id },
       { lastLoggedIn: new Date() },
       { new: true },
     );
     user.password = null;
-    if (!user.isUserApproved)
-      throw new BadRequestException(
-        'Uživatel musí být ručně schválen provozovatelem aplikace pro zajištění maximálního bezpečí dat. Pokud chcete proces urychlit, napište email na huss@richtergedeon.cz',
-      );
 
     return {
       user,
@@ -143,16 +138,11 @@ export class AuthService {
     return user;
   }
 
-  async signToken(
-    userId: number,
-    email: string,
-    authLevel: string,
-  ): Promise<Tokens> {
+  async signToken(userId: number, nickname: string): Promise<Tokens> {
     const config = new ConfigService();
     const payload = {
       sub: userId,
-      email,
-      authLevel,
+      nickname,
     };
     //Access token
     const token = await this.jwt.signAsync(payload, {
@@ -194,11 +184,11 @@ export class AuthService {
   }
 
   async startPasswordReset(dto: ForgotPasswordDto_checkEmail): Promise<{
-    email: string;
+    nickname: string;
     securityQuestion1: string;
     securityQuestion2: string;
   }> {
-    const user = await this.userModel.findOne({ email: dto.email });
+    const user = await this.userModel.findOne({ nickname: dto.nickname });
     if (!user) throw new BadRequestException('Uživatel neexistuje');
 
     if (!user.securityQuestion1 || !user.securityQuestion2)
@@ -207,7 +197,7 @@ export class AuthService {
       );
 
     return {
-      email: user.email,
+      nickname: user.nickname,
       securityQuestion1: user.securityQuestion1,
       securityQuestion2: user.securityQuestion2,
     };
@@ -217,7 +207,7 @@ export class AuthService {
     //Get user but remove password property
 
     const user = await this.userModel
-      .findOne({ email: dto.email })
+      .findOne({ nickname: dto.nickname })
       .select('-password');
 
     if (!user) throw new BadRequestException('Uživatel neexistuje');
