@@ -3,6 +3,7 @@ import { getTokensExpiration } from "../../APIs/Users";
 import { useJwt } from "react-jwt";
 import useAuthHeader from "react-auth-kit/hooks/useAuthHeader";
 import useSignOut from "react-auth-kit/hooks/useSignOut";
+import Branding from "./Branding";
 interface Props {}
 
 const Footer: React.FC<Props> = () => {
@@ -49,7 +50,7 @@ const Footer: React.FC<Props> = () => {
         <div className="grid grid-cols-2 text-center">
           <div className="col-span-1">
             {" "}
-            {new Date().getFullYear()} © MediTrack
+            {new Date().getFullYear()} © <Branding />
           </div>
           {expirace && parseInt(expirace) > 0 && (
             <div className="col-span-1">

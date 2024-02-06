@@ -9,6 +9,7 @@ import useIsAuthenticated from "react-auth-kit/hooks/useIsAuthenticated";
 import useSignOut from "react-auth-kit/hooks/useSignOut";
 import { BsDoorClosedFill, BsHouseDashFill } from "react-icons/bs";
 import Logo from "../../assets/logo.png";
+import Branding from "./Branding";
 interface Props {}
 
 const Navigation: React.FC<Props> = () => {
@@ -78,7 +79,7 @@ const Navigation: React.FC<Props> = () => {
             to="/"
             className="normal-case text-xl flex flex-row justify-center items-center font-bold ml-5 md:ml-0"
           >
-            <img src={Logo} alt="logo" width={50} /> MediTrack
+            <img src={Logo} alt="logo" width={50} /> <Branding />
           </Link>
         </div>
         <div className="hidden lg:flex navbar-end">

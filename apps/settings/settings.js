@@ -25,10 +25,16 @@ const dotEnvReader = async () => {
 
         console.log("\x1b[32m%s\x1b[0m", "5. Writing .env file to api/dist/src/.env in path " + path.join(__dirname, "../", "api", "dist", "src", ".env") );
 
-        const status = fs.writeFileSync(
+         fs.writeFileSync(
             path.join(__dirname, "../", "api", "dist", "src", ".env"),
             dotEnv
         );
+         fs.writeFileSync(
+            path.join(__dirname, "../", "api", ".env"),
+            dotEnv
+        );
+
+
 
        console.log("\n")
         console.log("\x1b[32m%s\x1b[0m", "6. Seems like no problem found - check please if .env is in ./apps/api/dist/src/.env - otherwise manually add it!" );
