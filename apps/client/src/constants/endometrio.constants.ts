@@ -1,0 +1,17 @@
+export const EndoConstantsQuestions:string[] = [
+    "1. Bolestivá menstruace",
+    "2. Bolestivý pohlavní styk",
+    "3. Cyklické bolesti s vazbou na menstruaci",
+    "4. Průjmovitá stolice",
+    "5. Zácpa",
+    "6. Krvácení z konečníku",
+    "7. Křeče v břiše",
+    "8. Bolesti při stolici",
+    "9. Pálení, řezání při močení",
+    "10. Nucení na močení",
+    "11. Únik moči spontánní",
+    "12. Únik moči při zátěži",
+    "13. Neúplné vyprázdnění močového měchýře po vymočení",
+    "14. Celková únava",
+    "15. Bolesti v zádech",
+]

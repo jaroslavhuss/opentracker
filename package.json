@@ -1,0 +1,24 @@
+{
+  "name": "healthtracker",
+  "version": "1.0.0",
+  "description": "An application to track health status and progress",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "turbo run dev",
+    "installation": "npm install",
+    "build": "turbo run build",
+    "finish": "node ./apps/settings/settings.js",
+    "full": "npm run installation && npm run build && npm run finish"
+  },
+  "keywords": [],
+  "author": "Jaroslav Huss - jaroslav.huss@gmail.com",
+  "license": "MIT",
+  "devDependencies": {
+    "turbo": "^1.10.7",
+    "vite-plugin-wasm": "^3.2.2"
+  },
+  "workspaces": [
+    "apps/*"
+  ]
+}
