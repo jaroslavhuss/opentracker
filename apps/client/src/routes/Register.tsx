@@ -155,14 +155,14 @@ const Register: React.FC<Props> = ({}) => {
 
     const response: AxiosResponse = await registerUser(formData);
     if (response) {
-      setFormData(emptyRegisterFormData);
       navigate("/");
       dispatch(
         setSuccess({
-          message: "Registrace proběhla úspěšně",
+          message: `Registrace proběhla úspěšně. Prosím, uložte si své přihlašovací údaje:\n LoginID: ${formData.loginID}\n\n \n  Odpovědi na bezpečnostní otázky: ${formData.securityAnswer1}, ${formData.securityAnswer2}`,
           rawData: "Nyní se můžete přihlásit",
         })
       );
+      setFormData(emptyRegisterFormData);
     }
   };
   return (

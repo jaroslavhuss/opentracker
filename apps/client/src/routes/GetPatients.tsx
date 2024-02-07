@@ -5,6 +5,7 @@ import { getAllPatients, deletePatientById } from "../APIs/Patients";
 import { BsEyeFill, BsTrash2Fill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { IPatient } from "../Entities/interfaces/patient.interface";
+import PatientCard from "../components/GlobalComponents/PatientCard";
 
 const GetPatients = () => {
   const [questionnaires, setQuestionnaires] = useState<IPatient[]>([]);
@@ -48,10 +49,10 @@ const GetPatients = () => {
   return (
     <MainLayout>
       {filteredQuestionnaires && filteredQuestionnaires.length > 0 ? (
-        <h1 className="text-center text-2xl">Přehled pacientů</h1>
+        <h1 className="text-center text-2xl">Přehled sledovaných uživatelů</h1>
       ) : (
         <h1 className="text-center text-2xl">
-          Zatím nebyl vytvořen žádný pacient
+          Zatím nebyl vytvořen žádný uživatel
         </h1>
       )}
 
@@ -102,16 +103,23 @@ const GetPatients = () => {
                     >
                       <div className="collapse-title text-xl font-medium">
                         <h2 className="card-title text-center mx-auto">
-                          {questionnaire.name} {questionnaire.surname}
+                          <p>
+                            {questionnaire.nickname}
+                            <br />
+                            <span className="text-sm text-yellow-700">
+                              {questionnaire.privateId}
+                            </span>
+                          </p>
                         </h2>
                       </div>
                       <div className="collapse-content">
-                        <p>
-                          <strong>email:</strong>
-                          <br />
-                          {questionnaire.email}
-                        </p>
-                        <br />
+                        <PatientCard
+                          nickname={questionnaire.nickname}
+                          privateId={questionnaire.privateId}
+                          questionnaires={
+                            questionnaire.assignedQuestionnaires || []
+                          }
+                        />
                       </div>
                     </div>
                   </div>

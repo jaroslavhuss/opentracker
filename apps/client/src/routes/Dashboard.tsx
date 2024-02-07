@@ -17,10 +17,14 @@ const Dashboard: FC<Props> = ({}) => {
     <MainLayout>
       <div className="grid gap-2 grid-cols-1 md:grid-cols-12 justify-center align-middle">
         <div className="group card bg-base-100 shadow-xl col-span-3 hover:shadow-xl transition-all duration-700 hover:bg-slate-200 hover:cursor-pointer">
-          <Link to="/questionnaire/create">
+          <Link
+            to="/questionnaire/create"
+            className="tooltip"
+            data-tip="Šablona definuje ucelenou strukturu dotazníku, která se pak může Vaším uživatelům libovolně přiřazovat."
+          >
             <div className="card-body block mx-auto">
               <h2 className="card-title text-center transition-all duration-400 ease-in group-hover:text-green-600 group-hover:translate-x-2">
-                Vytvořit nový dotazník
+                Vytvořit novou šablonu dotazníku
               </h2>
               <br />
               <BsFillPlusCircleFill
@@ -36,7 +40,11 @@ const Dashboard: FC<Props> = ({}) => {
         </div>
 
         <div className="group card bg-base-100 shadow-xl col-span-3 hover:shadow-xl transition-all duration-700 hover:bg-slate-200 hover:cursor-pointer">
-          <Link to="/questionnaire/get">
+          <Link
+            to="/questionnaire/get"
+            className="tooltip"
+            data-tip="Spravujte své šablony - mažte je, aktualizujte nebo prohlížejte."
+          >
             <div className="card-body block mx-auto">
               <h2 className="card-title text-center transition-all duration-400 ease-in group-hover:text-green-600 group-hover:translate-x-2">
                 Přejít na přehled dotazníků
@@ -58,7 +66,7 @@ const Dashboard: FC<Props> = ({}) => {
           <Link to="/patient/create">
             <div className="card-body block mx-auto">
               <h2 className="card-title text-center transition-all duration-400 ease-in group-hover:text-green-600 group-hover:translate-x-2">
-                Vytvořit nového pacienta
+                Vytvořit svého uživatele ke sledování
               </h2>
               <br />
               <BsPersonFillAdd
@@ -76,7 +84,7 @@ const Dashboard: FC<Props> = ({}) => {
           <Link to="/patient/get">
             <div className="card-body block mx-auto">
               <h2 className="card-title text-center transition-all duration-400 ease-in group-hover:text-green-600 group-hover:translate-x-2">
-                Seznam pacientů
+                Seznam uživatelů
               </h2>
               <br />
               <BsPersonLinesFill

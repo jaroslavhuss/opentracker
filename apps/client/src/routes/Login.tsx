@@ -5,18 +5,19 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { emptyLoginFormData } from "../Entities/defaults/login.empty";
 import { loginUser } from "../APIs/Users";
-import { isEmailValid, isPasswordValid } from "../utils/InputValidations";
+import { isInputEmpty, isPasswordValid } from "../utils/InputValidations";
 import { setError } from "../store/gsms/errorSlice";
 
 import useSignIn from "react-auth-kit/hooks/useSignIn";
 import PasswordRenewal from "../components/GlobalComponents/PasswordRenewal";
+import { ILoginFormData } from "../Entities/interfaces/login.interface";
 
 interface Props {}
 
 const Login: React.FC<Props> = () => {
   const dispatch: Function = useDispatch();
   const signIn = useSignIn();
-  const [formData, setformData] = useState(emptyLoginFormData);
+  const [formData, setformData] = useState<ILoginFormData>(emptyLoginFormData);
   const navigate = useNavigate();
   const [triggerPasswordRenewalProcess, setTriggerPasswordRenewalProcess] =
     useState<boolean>(false);
@@ -35,7 +36,7 @@ const Login: React.FC<Props> = () => {
       return;
     }
 
-    const emailValid: boolean = isEmailValid(formData.email);
+    const emailValid: boolean = isInputEmpty(formData.loginID);
 
     if (!emailValid) {
       dispatch(
@@ -87,11 +88,11 @@ const Login: React.FC<Props> = () => {
                   className="rounded-r-md flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400
                   shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                   placeholder="Your email"
-                  value={formData?.email}
+                  value={formData?.loginID}
                   onChange={(e) => {
                     setformData({
                       ...formData,
-                      email: e.target.value,
+                      loginID: e.target.value,
                     });
                   }}
                 />

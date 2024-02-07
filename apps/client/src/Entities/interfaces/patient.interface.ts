@@ -14,10 +14,8 @@ export interface IQuestionsDoneByPatient {
 
 export interface IPatient {
   _id: string;
-  name: string;
-  surname: string;
+  nickname: string;
   privateId: string;
-  email: string;
   fulltext: string;
   questionnairesDoneByPatient?: IQuestionsDoneByPatient[];
   assignedQuestionnaires?: IQuestionnaire[];

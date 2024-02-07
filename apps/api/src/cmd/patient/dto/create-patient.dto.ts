@@ -3,18 +3,11 @@ import { IsArray, IsNotEmpty, IsString } from 'class-validator';
 export class CreatePatientDto {
   @IsString()
   @IsNotEmpty()
-  name: string;
+  nickname: string;
 
-  @IsString()
-  @IsNotEmpty()
-  surname: string;
   @IsString()
   @IsNotEmpty()
   privateId: string;
-
-  @IsString()
-  @IsNotEmpty()
-  email: string;
 
   @IsString()
   @IsNotEmpty()

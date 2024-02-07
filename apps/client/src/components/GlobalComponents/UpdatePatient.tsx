@@ -26,21 +26,11 @@ const UpdatePatient: FC<Props> = ({ updateablePatient, updatedPatient }) => {
     if (isUpdateDisabled) return;
 
     patient.supervisingDoctor = authUser.user._id;
-    patient.fulltext = `${patient.name} ${patient.surname} ${patient.privateId} ${patient.email}`;
+    patient.fulltext = `${patient.nickname} ${patient.privateId}`;
 
     //validate name, surname and private ID - email can be empty
 
-    if (patient.name === "") {
-      dispatch(
-        setError({
-          message: "Jméno pacienta nesmí být prázdné",
-          rawData: "Bohužel, potřebujeme i jméno pacienta",
-        })
-      );
-      return;
-    }
-
-    if (patient.surname === "") {
+    if (patient.nickname === "") {
       dispatch(
         setError({
           message: "Příjmení pacienta nesmí být prázdné",
@@ -111,7 +101,10 @@ const UpdatePatient: FC<Props> = ({ updateablePatient, updatedPatient }) => {
   return (
     <div className="w-full">
       <h1 className="text-2xl my-2 font-bold">
-        Aktualizace {patient.name} {patient.surname}
+        Aktualizace{" "}
+        <span className=" text-green-600">
+          {patient.nickname} {patient.privateId}
+        </span>
       </h1>
       <form
         onSubmit={handleFormSubmit}
@@ -123,61 +116,7 @@ const UpdatePatient: FC<Props> = ({ updateablePatient, updatedPatient }) => {
             setIsUpdateDisabled(!isUpdateDisabled);
           }}
         />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-          <div className="col-span-1">
-            {" "}
-            <span className=" font-bold py-1 mx-2">Jméno</span>
-            <input
-              type="text"
-              className="input input-bordered input-primary w-full max-w-3xl"
-              value={patient.name}
-              onChange={(e) => setPatient({ ...patient, name: e.target.value })}
-              disabled={isUpdateDisabled}
-            />
-          </div>
-          <div className="col-span-1">
-            {" "}
-            <span className=" font-bold py-1 mx-2">Příjmení</span>
-            <input
-              type="text"
-              className="input input-bordered input-primary w-full max-w-3xl"
-              value={patient.surname}
-              onChange={(e) =>
-                setPatient({ ...patient, surname: e.target.value })
-              }
-              disabled={isUpdateDisabled}
-            />
-          </div>
-        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-          <div className="col-span-1">
-            {" "}
-            <span className=" font-bold py-1 mx-2">Rodné číslo</span>
-            <input
-              type="text"
-              className="input input-bordered input-primary w-full max-w-3xl"
-              value={isUpdateDisabled ? "********" : patient.privateId}
-              onChange={(e) =>
-                setPatient({ ...patient, privateId: e.target.value })
-              }
-              disabled={isUpdateDisabled}
-            />
-          </div>
-          <div className="col-span-1">
-            {" "}
-            <span className=" font-bold py-1 mx-2">Email</span>
-            <input
-              type="text"
-              className="input input-bordered input-primary w-full max-w-3xl"
-              value={isUpdateDisabled ? "********" : patient.email}
-              onChange={(e) =>
-                setPatient({ ...patient, email: e.target.value })
-              }
-              disabled={isUpdateDisabled}
-            />
-          </div>
-        </div>
         <hr />
         {availableQuestionnaires.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-1 gap-2">
@@ -226,7 +165,7 @@ const UpdatePatient: FC<Props> = ({ updateablePatient, updatedPatient }) => {
             type="submit"
             className="btn btn-success w-full max-w-3xl self-center mt-10"
           >
-            Aktualizovat {patient.name} {patient.surname}
+            Aktualizovat {patient.nickname} {patient.privateId}
           </button>
         )}
       </form>

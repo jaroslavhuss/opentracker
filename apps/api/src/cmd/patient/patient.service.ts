@@ -15,9 +15,11 @@ export class PatientService {
   }
 
   async findAll(_id: string) {
-    const data = await this.patientModel.find({
-      supervisingDoctor: _id.toString(),
-    });
+    const data = await this.patientModel
+      .find({
+        supervisingDoctor: _id.toString(),
+      })
+      .populate({ path: `assignedQuestionnaires`, model: 'Questionnaire' });
     return data;
   }
 

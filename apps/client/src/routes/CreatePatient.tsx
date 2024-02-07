@@ -20,25 +20,15 @@ const CreatePatient = () => {
 
     //@ts-ignore
     patient.supervisingDoctor = authUser.user._id;
-    patient.fulltext = `${patient.name} ${patient.surname} ${patient.privateId} ${patient.email}`;
+    patient.fulltext = `${patient.nickname} ${patient.privateId}`;
 
     //validate name, surname and private ID - email can be empty
 
-    if (patient.name === "") {
+    if (patient.nickname === "") {
       dispatch(
         setError({
           message: "Jméno pacienta nesmí být prázdné",
           rawData: "Bohužel, potřebujeme i jméno pacienta",
-        })
-      );
-      return;
-    }
-
-    if (patient.surname === "") {
-      dispatch(
-        setError({
-          message: "Příjmení pacienta nesmí být prázdné",
-          rawData: "Bohužel, potřebujeme i příjmení pacienta",
         })
       );
       return;
@@ -93,61 +83,39 @@ const CreatePatient = () => {
   return (
     <MainLayout>
       <div className="w-full text-center flex flex-col justify-center align-middle">
-        <h1 className="text-2xl my-2">Vyvtoření nového pacienta</h1>
+        <h1 className="text-2xl my-2">Vyvtoření nového uživatele</h1>
         <form
           onSubmit={handleFormSubmit}
           className="card w-full max-w-3xl flex flex-col gap-3 p-3 shadow-xl self-center"
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-            <div className="col-span-1">
+            <div className="col-span-2">
               {" "}
-              <span className=" font-bold py-1 mx-2">Jméno</span>
+              <span className=" font-bold py-1 mx-2">Náhodná přezdívka</span>
               <input
                 type="text"
-                className="input input-bordered input-primary w-full max-w-3xl"
-                value={patient.name}
+                className="input input-bordered input-primary w-full max-w-3xl text-center font-bold text-purple-900"
+                value={patient.nickname}
                 onChange={(e) =>
-                  setPatient({ ...patient, name: e.target.value })
+                  setPatient({ ...patient, nickname: e.target.value })
                 }
-              />
-            </div>
-            <div className="col-span-1">
-              {" "}
-              <span className=" font-bold py-1 mx-2">Příjmení</span>
-              <input
-                type="text"
-                className="input input-bordered input-primary w-full max-w-3xl"
-                value={patient.surname}
-                onChange={(e) =>
-                  setPatient({ ...patient, surname: e.target.value })
-                }
+                disabled={true}
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-            <div className="col-span-1">
+            <div className="col-span-2">
               {" "}
-              <span className=" font-bold py-1 mx-2">Rodné číslo</span>
+              <span className=" font-bold py-1 mx-2">Identifikační číslo</span>
               <input
                 type="text"
-                className="input input-bordered input-primary w-full max-w-3xl"
+                className="input input-bordered input-primary w-full max-w-3xl  text-center font-bold text-purple-900"
                 value={patient.privateId}
                 onChange={(e) =>
                   setPatient({ ...patient, privateId: e.target.value })
                 }
-              />
-            </div>
-            <div className="col-span-1">
-              {" "}
-              <span className=" font-bold py-1 mx-2">Email</span>
-              <input
-                type="text"
-                className="input input-bordered input-primary w-full max-w-3xl"
-                value={patient.email}
-                onChange={(e) =>
-                  setPatient({ ...patient, email: e.target.value })
-                }
+                disabled={true}
               />
             </div>
           </div>
@@ -201,7 +169,7 @@ const CreatePatient = () => {
             type="submit"
             className="btn btn-success w-full max-w-3xl self-center mt-10"
           >
-            Vytvořit pacienta
+            Vytvořit uživatele ke sledování
           </button>
         </form>
       </div>

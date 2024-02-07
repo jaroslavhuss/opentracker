@@ -10,11 +10,6 @@ import {
 export class AuthDto {
   @IsString()
   @IsNotEmpty()
-  @MaxLength(255)
-  nickname: string;
-
-  @IsString()
-  @IsNotEmpty()
   loginID: string;
 
   @IsString()
